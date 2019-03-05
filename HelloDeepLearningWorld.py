@@ -1,9 +1,10 @@
-#A single code version of what I have in the Jupyter Notebook
+#A one-file version of the Jupyter Notebook code
 
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[31]:
+
+# In[27]:
 
 
 import numpy as np
@@ -39,7 +40,7 @@ def preprocess(filename):
     
     return X, Y
 
-X, y = preprocess(filename="graphs6")
+X, y = preprocess(filename="graphs5")
 
 
 # In[3]:
@@ -50,7 +51,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 
 
-# In[27]:
+# In[23]:
 
 
 class My_Neural_Net(nn.Module):    
@@ -66,7 +67,7 @@ class My_Neural_Net(nn.Module):
         numFeatures=20
         self.layer_1 = nn.Linear(X_dim, numFeatures)
         self.layer_2 = nn.Linear(numFeatures,numFeatures)
-        self.layer_3 = nn.Linear(numFeatures,numFeatures)
+        self.layer_3 = nn.Linear(numFeatures, numFeatures)
         self.layer_4 = nn.Linear(numFeatures, numFeatures)
         self.layer_5 = nn.Linear(numFeatures, 1)
 
@@ -163,7 +164,7 @@ class My_Neural_Net(nn.Module):
         return acc
 
 
-# In[32]:
+# In[28]:
 
 
 # Split into train and test so we can fit on some data and see performance 
@@ -179,7 +180,7 @@ y_test_tens = Variable(torch.Tensor(y_test).float())
 
 neur_net = My_Neural_Net(X_train_tens)
 neur_net.fit(X_train_tens,y_train_tens)
-neur_net.score(X_train_tens,y_train_tens)
+neur_net.score(X_test_tens,y_test_tens)
 
 
 # In[ ]:
